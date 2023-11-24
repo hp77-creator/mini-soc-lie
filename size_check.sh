@@ -1,20 +1,25 @@
 #! /bin/sh
 
+
+
+
+
 compile_and_measure() {
   file=$1
   flags=$2
-
+  filename=$(basename "$file" .go)
+  result_file_name="result"
+  extension=".txt"
+  result="${result_file_name}-${filename}${extension}"
   echo "Compiling $file with flags: $flags"
 
   go build $flags "$file"
 
-  filename=$(basename "$file" .go)
-  size=$(stat -f %z "$filename")
-  result_file_name="result"
-  extension=".txt"
-  result="${result_file_name}-${filename}${extension}"
 
-  echo "File size with flags $flags: $size bytes" >> "$result"
+  size=$(stat -f %z "$filename")
+
+
+  echo "File: $filename with flags $flags: $size bytes" >> "$result"
 
 
 }
@@ -22,10 +27,14 @@ compile_and_measure() {
 go_file=$1
 
 # Compile and measure with different flags
-compile_and_measure "$go_file" "-ldflags='-w -s'"
-compile_and_measure "$go_file" "-ldflags='-w -s' -gcflags=all=-l"
+compile_and_measure "$go_file" "-ldflags=-w -ldflags=-s"
+compile_and_measure "$go_file" "-ldflags=-w -ldflags=-s -gcflags=all=-l"
 
 # Add more compile_and_measure lines with different flags as needed
 
 # Display the results
-cat results.txt
+cat "$result"
+if [ -e "$result" ]
+then
+  rm "$result"
+fi
