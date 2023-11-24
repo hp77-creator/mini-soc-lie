@@ -10,6 +10,27 @@ Focus is to minimize a Golang binary for a client application
 
 Develop a minimalistic client (in golang) using websocket to send a "hello" message to a server and print the server's response. The twist? Your goal is to make the executable binary as tiny as possible!
 
+### Implementation
+
+- Implemented a normal websocket server using gorilla library
+- Also had created a client using gorilla 
+- size was in 6 MBs
+- Looked for ways to remove size
+- First thing removing `fmt`
+- Then gorilla
+- so created a client with `golang.org/x/net/websocket`
+- created a script to test with different flags, referred `Guide to decrease binary size in golang`
+
+### Testing
+
+To test it in your system:
+
+- Clone the repo
+- `go run server.go`
+- `go run client.go`
+- To determine size of client binary execute `./size_check.sh client_wo_gorilla.go`
+
+
 ### Requirements Gathering
 
 [gfg article on socket programming in C++](https://www.geeksforgeeks.org/socket-programming-cc/)

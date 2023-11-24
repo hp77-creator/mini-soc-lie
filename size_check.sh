@@ -27,8 +27,11 @@ compile_and_measure() {
 go_file=$1
 
 # Compile and measure with different flags
+compile_and_measure "$go_file" "-ldflags=-w"
 compile_and_measure "$go_file" "-ldflags=-w -ldflags=-s"
 compile_and_measure "$go_file" "-ldflags=-w -ldflags=-s -gcflags=all=-l"
+compile_and_measure "$go_file" "-ldflags=-w -ldflags=-s -gcflags=all=-l -gcflags=all=-B"
+compile_and_measure "$go_file" "-ldflags=-w -ldflags=-s -gcflags=all=-l -gcflags=all=-B -gcflags=all=-wb=false"
 
 # Add more compile_and_measure lines with different flags as needed
 
@@ -38,3 +41,5 @@ if [ -e "$result" ]
 then
   rm "$result"
 fi
+
+rm "$filename"
