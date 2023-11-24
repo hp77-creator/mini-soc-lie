@@ -36,7 +36,7 @@ One more way to reduce Golang Binary size:
 [Blog](https://gophercoding.com/reduce-go-binary-size/#:~:text=In%20short%2C%20adding%20the%20ldflags,commands%20like%20go%20tool%20nm%20.)
 
 
-
+[Guide to decrease size of a binary in go](https://github.com/xaionaro/documentation/blob/master/golang/reduce-binary-size.md)
 
 
 
