@@ -30,6 +30,8 @@ To test it in your system:
 - `go run client.go`
 - To determine size of client binary execute `./size_check.sh client_wo_gorilla.go`
 
+![img.png](img.png)
+
 
 ### Requirements Gathering
 
